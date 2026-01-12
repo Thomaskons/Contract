@@ -6,7 +6,7 @@
   <title>Investment Agreement</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -99,7 +99,6 @@
     .sig-box { padding: 1.5rem; border: 1px solid #e8e4dc; border-radius: 8px; }
     .sig-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: #6b7280; margin-bottom: 1rem; }
     .sig-name { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 600; margin-bottom: 1.5rem; }
-    .sig-line { border-bottom: 2px dashed #e8e4dc; height: 3rem; margin-bottom: 0.5rem; }
     .sig-text { font-size: 0.875rem; color: #6b7280; }
     .sig-details { margin-top: 1rem; }
     .sig-details p { font-size: 0.875rem; margin: 0.25rem 0; }
@@ -126,13 +125,19 @@
       border-bottom: 2px dashed #e8e4dc;
       background: transparent;
       padding: 0.5rem 0;
-      font-family: 'Brush Script MT', cursive;
-      font-size: 1.5rem;
+      font-family: 'Caveat', cursive;
+      font-size: 2.1rem;
       color: #1a1f2e;
-      height: 3rem;
+      height: 3.2rem;
+      letter-spacing: 1px;
     }
     .sig-input:focus { outline: none; border-bottom-color: #c9a227; }
     .sig-input::placeholder { font-family: 'Inter', sans-serif; font-size: 0.875rem; color: #9ca3af; }
+    .sig-input.disabled {
+      color: #1a1f2e;
+      background: rgba(201,162,39,0.06);
+      cursor: not-allowed;
+    }
     .date-input {
       border: 1px solid #e8e4dc;
       background: white;
@@ -142,7 +147,10 @@
       border-radius: 4px;
       color: #1a1f2e;
     }
-    .date-input:focus { outline: none; border-color: #c9a227; }
+    .date-input.disabled {
+      background: rgba(201,162,39,0.06);
+      cursor: not-allowed;
+    }
     .submit-btn {
       display: block;
       width: 100%;
@@ -234,8 +242,9 @@
 
       <div class="info-box">
         <p><strong>Investing International SA</strong>, a corporation duly incorporated under the laws of <strong>Switzerland</strong>, with its principal place of business registered under UID <span class="mono">CHE-431.862.672</span> (the "Company"), represented by <strong>Thomas Webber</strong>, <em>Senior Financial Advisor</em>;</p>
-        <p class="muted" style="font-size:0.875rem; margin:1rem 0;">and</p>
-        <p style="margin:0;"><input type="text" id="investorName" class="input-field" placeholder="Enter Investor Name" oninput="updateInvestorName()">, an individual residing at <input type="text" id="investorAddress" class="input-field" placeholder="Enter Investor Address" style="min-width:250px;"> (the "Investor").</p>
+        <p style="margin:1rem 0 0 0;">
+          <input type="text" id="investorName" class="input-field" placeholder="Enter Investor Name" oninput="updateInvestorName()"> (the "Investor").
+        </p>
       </div>
 
       <hr>
@@ -363,18 +372,19 @@
         <div class="sig-box">
           <div class="sig-label">Company</div>
           <div class="sig-name">Investing International SA</div>
-          <input type="text" class="sig-input" id="companySignature" placeholder="Company representative signature">
+          <input type="text" class="sig-input disabled" id="companySignature" value="Thomas Webber" readonly>
           <div class="sig-text">Signature</div>
           <div class="sig-details">
             <p><span>Name:</span> Thomas Webber</p>
             <p><span>Title:</span> Senior Financial Advisor</p>
-            <p><span>Date:</span> <input type="date" class="date-input" id="companyDate"></p>
+            <p><span>Date:</span> <input type="text" class="date-input disabled" value="2026-01-12" readonly></p>
           </div>
         </div>
+
         <div class="sig-box">
           <div class="sig-label">Investor</div>
           <div class="sig-name" id="investorNameDisplay">Investor Name</div>
-          <input type="text" class="sig-input" id="investorSignature" placeholder="Investor signature">
+          <input type="text" class="sig-input" id="investorSignature" placeholder="Your signature">
           <div class="sig-text">Signature</div>
           <div class="sig-details">
             <p><span>Name:</span> <span id="investorNameSig">Investor Name</span></p>
@@ -412,14 +422,11 @@
 
     function submitContract() {
       const investorName = document.getElementById('investorName').value;
-      const investorAddress = document.getElementById('investorAddress').value;
-      const companySignature = document.getElementById('companySignature').value;
       const investorSignature = document.getElementById('investorSignature').value;
-      const companyDate = document.getElementById('companyDate').value;
       const investorDate = document.getElementById('investorDate').value;
 
-      if (!investorName || !investorAddress || !companySignature || !investorSignature || !companyDate || !investorDate) {
-        alert('Please fill in all required fields:\n- Investor Name\n- Investor Address\n- Both Signatures\n- Both Dates');
+      if (!investorName || !investorSignature || !investorDate) {
+        alert('Please fill in all required fields:\n- Investor Name\n- Your Signature\n- Date');
         return;
       }
 
