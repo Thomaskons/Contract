@@ -1,442 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Investment Agreement</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: 'Inter', system-ui, sans-serif;
-      background: #faf8f5;
-      color: #1a1f2e;
-      line-height: 1.6;
-    }
-    .header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(255,255,255,0.9);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid #e8e4dc;
-      padding: 1rem 1.5rem;
-    }
-    .header-content {
-      max-width: 900px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .header-left { display: flex; align-items: center; gap: 0.75rem; }
-    .icon-box {
-      width: 40px; height: 40px;
-      background: #1a1f2e;
-      border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .icon-box svg { width: 20px; height: 20px; color: white; }
-    .header-title { font-family: 'Cormorant Garamond', serif; font-size: 1.125rem; font-weight: 600; }
-    .header-subtitle { font-size: 0.75rem; color: #6b7280; }
-    .btn {
-      padding: 0.5rem 1rem;
-      border: 1px solid #e8e4dc;
-      background: white;
-      border-radius: 6px;
-      font-size: 0.875rem;
-      cursor: pointer;
-      display: inline-flex; align-items: center; gap: 0.5rem;
-    }
-    .btn:hover { background: #f5f3ef; }
-    .main { padding: 2rem 1rem; }
-    .document {
-      max-width: 850px;
-      margin: 0 auto;
-      background: white;
-      border-radius: 12px;
-      padding: 3rem 4rem;
-      box-shadow: 0 0 0 1px rgba(0,0,0,0.03), 0 4px 6px rgba(0,0,0,0.04), 0 12px 24px rgba(0,0,0,0.06), 0 24px 48px rgba(0,0,0,0.08);
-    }
-    .doc-header { text-align: center; margin-bottom: 3rem; }
-    .badge {
-      display: inline-block;
-      padding: 0.25rem 1rem;
-      background: rgba(26,31,46,0.08);
-      border-radius: 20px;
-      font-size: 0.7rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 1rem;
-    }
-    h1 { font-family: 'Cormorant Garamond', serif; font-size: 2.25rem; font-weight: 700; margin-bottom: 0.5rem; }
-    .gold-line { width: 80px; height: 4px; background: #c9a227; margin: 1rem auto 0; border-radius: 2px; opacity: 0.6; }
-    h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem; font-weight: 600;
-      margin: 2.5rem 0 1rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 1px solid #e8e4dc;
-    }
-    h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.125rem; font-weight: 500; margin: 1.5rem 0 0.75rem; }
-    p { margin-bottom: 1rem; line-height: 1.75; }
-    ul { list-style: disc; padding-left: 1.5rem; margin-bottom: 1rem; }
-    li { margin-bottom: 0.5rem; line-height: 1.6; }
-    hr { border: none; border-top: 2px solid #c9a227; margin: 2rem 0; opacity: 0.3; }
-    .info-box { padding: 1.5rem; background: #faf8f5; border-radius: 8px; border: 1px solid #e8e4dc; margin: 1.5rem 0; }
-    .warning-box { padding: 1rem; background: rgba(239,68,68,0.05); border: 1px solid rgba(239,68,68,0.2); border-radius: 8px; }
-    .warning-box p { font-size: 0.875rem; margin: 0; }
-    .gold { color: #c9a227; }
-    .muted { color: #6b7280; }
-    .mono { font-family: monospace; font-size: 0.875rem; background: #faf8f5; padding: 0.125rem 0.5rem; border-radius: 4px; }
-    .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
-    .grid-item span { font-size: 0.75rem; color: #6b7280; display: block; }
-    .grid-item p { font-weight: 500; margin: 0.25rem 0 0; }
-    .sig-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 2rem; }
-    .sig-box { padding: 1.5rem; border: 1px solid #e8e4dc; border-radius: 8px; }
-    .sig-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: #6b7280; margin-bottom: 1rem; }
-    .sig-name { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 600; margin-bottom: 1.5rem; }
-    .sig-text { font-size: 0.875rem; color: #6b7280; }
-    .sig-details { margin-top: 1rem; }
-    .sig-details p { font-size: 0.875rem; margin: 0.25rem 0; }
-    .sig-details span { color: #6b7280; }
-    .footer { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #e8e4dc; text-align: center; }
-    .footer p { font-size: 0.875rem; color: #6b7280; margin: 0.5rem 0; }
-    .footer .ref { font-family: monospace; font-size: 0.75rem; }
-    .input-field {
-      border: none;
-      border-bottom: 2px solid #c9a227;
-      background: transparent;
-      padding: 0.25rem 0.5rem;
-      font-family: inherit;
-      font-size: inherit;
-      font-weight: 600;
-      color: #1a1f2e;
-      min-width: 200px;
-    }
-    .input-field:focus { outline: none; border-bottom-color: #1a1f2e; }
-    .input-field::placeholder { color: #9ca3af; font-weight: 400; }
-    .sig-input {
-      width: 100%;
-      border: none;
-      border-bottom: 2px dashed #e8e4dc;
-      background: transparent;
-      padding: 0.5rem 0;
-      font-family: 'Caveat', cursive;
-      font-size: 2.1rem;
-      color: #1a1f2e;
-      height: 3.2rem;
-      letter-spacing: 1px;
-    }
-    .sig-input:focus { outline: none; border-bottom-color: #c9a227; }
-    .sig-input::placeholder { font-family: 'Inter', sans-serif; font-size: 0.875rem; color: #9ca3af; }
-    .sig-input.disabled {
-      color: #1a1f2e;
-      background: rgba(201,162,39,0.06);
-      cursor: not-allowed;
-    }
-    .date-input {
-      border: 1px solid #e8e4dc;
-      background: white;
-      padding: 0.5rem;
-      font-family: inherit;
-      font-size: 0.875rem;
-      border-radius: 4px;
-      color: #1a1f2e;
-    }
-    .date-input.disabled {
-      background: rgba(201,162,39,0.06);
-      cursor: not-allowed;
-    }
-    .submit-btn {
-      display: block;
-      width: 100%;
-      max-width: 300px;
-      margin: 2rem auto 0;
-      padding: 1rem 2rem;
-      background: #1a1f2e;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .submit-btn:hover { background: #2d3348; transform: translateY(-1px); }
-    .submit-btn:active { transform: translateY(0); }
-    .submit-btn:disabled { background: #9ca3af; cursor: not-allowed; transform: none; }
-    .success-message {
-      display: none;
-      text-align: center;
-      padding: 2rem;
-      background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
-      border: 2px solid #10b981;
-      border-radius: 12px;
-      margin-top: 2rem;
-    }
-    .success-message.show { display: block; animation: fadeIn 0.5s ease; }
-    .success-icon {
-      width: 60px;
-      height: 60px;
-      background: #10b981;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1rem;
-    }
-    .success-icon svg { width: 32px; height: 32px; color: white; }
-    .success-message h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem;
-      color: #065f46;
-      margin-bottom: 0.5rem;
-    }
-    .success-message p { color: #047857; margin: 0; }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @media (max-width: 768px) {
-      .document { padding: 2rem 1.5rem; }
-      h1 { font-size: 1.75rem; }
-      .grid, .sig-grid { grid-template-columns: 1fr; }
-    }
-    @media print {
-      .header, .submit-btn { display: none; }
-      .document { box-shadow: none; padding: 0; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thomas Webber</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+            overflow: hidden;
+        }
+
+        .moving-text {
+            font-size: 4rem;
+            font-weight: 800;
+            color: #ffffff;
+            text-align: center;
+            background: linear-gradient(90deg, #ffd700, #ffaa00, #ffd700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: move 12s ease-in-out infinite, glow 4s ease-in-out infinite alternate;
+            white-space: nowrap;
+        }
+
+        @keyframes move {
+            0% { transform: translateX(-100px); }
+            50% { transform: translateX(100px); }
+            100% { transform: translateX(-100px); }
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(255, 215, 0, 0.5); }
+            to { text-shadow: 0 0 40px rgba(255, 215, 0, 0.8), 0 0 60px rgba(255, 170, 0, 0.4); }
+        }
+
+        /* Responsive adjustment */
+        @media (max-width: 768px) {
+            .moving-text {
+                font-size: 2.5rem;
+            }
+            @keyframes move {
+                0% { transform: translateX(-60px); }
+                50% { transform: translateX(60px); }
+                100% { transform: translateX(-60px); }
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header class="header">
-    <div class="header-content">
-      <div class="header-left">
-        <div class="icon-box">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-          </svg>
-        </div>
-        <div>
-          <div class="header-title">Investment Agreement</div>
-          <div class="header-subtitle">Official Document</div>
-        </div>
-      </div>
-      <button class="btn" onclick="window.print()">🖨️ Print</button>
-    </div>
-  </header>
-
-  <main class="main">
-    <article class="document">
-      <div class="doc-header">
-        <span class="badge">Official Document</span>
-        <h1>Investment Agreement</h1>
-        <div class="gold-line"></div>
-      </div>
-
-      <p>This Investment Agreement (hereinafter referred to as the ‘Agreement’) is made and entered into as of 22.01.2026 by and between the parties set forth below:</p>
-
-      <div class="info-box">
-        <p><strong>Investing International SA</strong>, a corporation duly incorporated under the laws of <strong>Switzerland</strong>, with its principal place of business registered under UID <span class="mono">CHE-431.862.672</span> (the "Company"), represented by <strong>Thomas Webber</strong>, <em>Senior Financial Advisor</em>;</p>
-        <p style="margin:1rem 0 0 0;">
-          <input type="text" id="investorName" class="input-field" placeholder="Enter Investor Name" oninput="updateInvestorName()"> (the "Investor").
-        </p>
-      </div>
-
-      <hr>
-
-      <h2>Recitals</h2>
-      <p><strong>WHEREAS</strong>, the Company is engaged in investment and trading activities;</p>
-      <p><strong>WHEREAS</strong>, the Investor desires to invest capital with the Company, and the Company desires to accept such investment under the terms set forth herein;</p>
-      <p><strong>WHEREAS</strong>, the Investor qualifies as an <strong>Accredited Investor</strong> and maintains an active <strong>Evertas Investment Insurance Policy</strong> covering the full investment amount;</p>
-      <p class="muted" style="font-style:italic;">NOW, THEREFORE, in consideration of the mutual covenants and promises herein contained, the parties agree as follows:</p>
-
-      <hr>
-
-      <h2>1. Investment Amount and Payment Terms</h2>
-      <h3>1.1 Investment Amount</h3>
-      <p>The Investor agrees to invest a total amount of <strong class="gold">EUR 10,000 (ten thousand euros)</strong> (the "Investment").</p>
-      <h3>1.2 Payment Method</h3>
-      <p>The Investment shall be paid by <strong>wire transfer</strong>.</p>
-      <h3>1.3 Payment Due Date</h3>
-      <p>Payment shall be made <strong>within one (1) business day of signing</strong> this Agreement.</p>
-      <h3>1.4 Purpose of Investment</h3>
-      <p>The Investment shall be used exclusively for <strong>investment and trading activities</strong> conducted by the Company.</p>
-
-      <hr>
-
-      <h2>2. Investment Structure and Expected Returns</h2>
-      <h3>2.1 Nature of Investment</h3>
-      <p>This Investment does not represent equity ownership, voting rights, or shares in the Company. The Investment is a capital allocation to be managed under the Company's proprietary trading strategies.</p>
-      <h3>2.2 Expected Monthly Returns (Non-Guaranteed)</h3>
-      <p>The Parties acknowledge that, based on the agreed trading strategy and normal market conditions, the trading account is <strong>projected</strong> to generate monthly returns in the range of <strong class="gold">25% to 30%</strong>.</p>
-      <h3>2.3 Estimated Monthly Profit</h3>
-      <p>Based on an initial capital of EUR 10,000, the projected monthly profit is estimated at <strong class="gold">EUR 2,500 to EUR 3,000</strong>, assuming approximately four (4) trades per day over twenty (20) trading days per month.</p>
-      <h3>2.4 Guarantee and Insurance Coverage</h3>
-      <div class="warning-box">
-        <p>All invested capital and projected returns are guaranteed and insured under the Evertas Investment Insurance Policy. In the event of any loss due to trading activities or unforeseen events, Evertas Insurance Company shall indemnify the Investor up to the full insured sum, ensuring the safety of the Investment.</p>
-      </div>
-
-      <hr>
-
-      <h2>3. Representations and Warranties</h2>
-      <h3>3.1 By the Company</h3>
-      <p>The Company represents and warrants that:</p>
-      <ul>
-        <li>It is duly organized and authorized to enter into this Agreement;</li>
-        <li>It will manage the Investment in good faith and in accordance with professional investment standards;</li>
-        <li>All material information relevant to the Investment has been disclosed to the Investor.</li>
-      </ul>
-      <h3>3.2 By the Investor</h3>
-      <p>The Investor represents and warrants that:</p>
-      <ul>
-        <li>They qualify as an <strong>Accredited Investor</strong> under applicable laws;</li>
-        <li>The Investment funds are derived from lawful sources;</li>
-        <li>They understand the risks associated with trading and investment activities;</li>
-        <li>They are investing voluntarily and with full knowledge of potential outcomes.</li>
-      </ul>
-
-      <hr>
-
-      <h2>4. Use of Funds and Reporting</h2>
-      <h3>4.1 Use of Funds</h3>
-      <p>The Company shall use the Investment solely for trading, investment operations, and associated risk management activities.</p>
-      <h3>4.2 Reporting</h3>
-      <p>The Company shall provide <strong>monthly performance summaries</strong> and <strong>quarterly detailed reports</strong> upon request.</p>
-
-      <hr>
-
-      <h2>5. Insurance Coverage – Evertas Investment Insurance</h2>
-      <h3>5.1 Insurance Policy</h3>
-      <p>The Investment is insured under the following policy:</p>
-      <div class="info-box">
-        <div class="grid">
-          <div class="grid-item"><span>Insurer:</span><p>Evertas Insurance Company</p></div>
-          <div class="grid-item"><span>Policy Reference:</span><p>EVRT-POL-2026-001</p></div>
-          <div class="grid-item"><span>Insured Sum:</span><p class="gold">EUR 10,000.00</p></div>
-          <div class="grid-item"><span>Inception Date:</span><p>22 January 2026</p></div>
-        </div>
-        <div class="grid-item" style="margin-top:1rem;"><span>Coverage:</span><p>Worldwide, subject to policy terms</p></div>
-      </div>
-      <h3>5.2 Scope of Coverage</h3>
-      <p>The policy provides coverage against all perils, including but not limited to theft, fraud, cyber incidents, internal collusion, system malfunctions, market volatility, and economic disruptions, subject to exclusions and conditions outlined in the Master Policy wording.</p>
-      <h3>5.3 Claims and Indemnification</h3>
-      <p>In the event of a covered loss, Evertas Insurance Company shall indemnify the Investor up to the full insured sum. Valid claims shall be settled within <strong>30 business days</strong> following receipt of satisfactory proof of loss.</p>
-
-      <hr>
-
-      <h2>6. Confidentiality and Non-Competition</h2>
-      <h3>6.1 Confidentiality</h3>
-      <p>The Investor agrees to keep all proprietary, financial, and strategic information strictly confidential for a period of <strong>five (5) years</strong> following termination of this Agreement.</p>
-      <h3>6.2 Non-Competition</h3>
-      <p>The Investor agrees not to engage in competing investment or trading activities that directly replicate the Company's proprietary strategies for a period of <strong>two (2) years</strong> following termination.</p>
-
-      <hr>
-
-      <h2>7. Term, Termination, and Capital Return</h2>
-      <h3>7.1 Term</h3>
-      <p>This Agreement shall commence on the Effective Date and remain in force unless terminated by mutual written consent or material breach.</p>
-      <h3>7.2 Withdrawal and Capital Return</h3>
-      <p>Upon termination, the Investor shall be entitled to the return of capital subject to open trading positions and applicable settlement periods.</p>
-      <h3>7.3 Confidential Materials</h3>
-      <p>Upon termination, all confidential materials shall be returned or destroyed.</p>
-
-      <hr>
-
-      <h2>8. Governing Law and Dispute Resolution</h2>
-      <h3>8.1 Governing Law</h3>
-      <p>This Agreement shall be governed by and construed in accordance with the laws of <strong>Switzerland</strong>.</p>
-      <h3>8.2 Dispute Resolution</h3>
-      <p>Any dispute arising under this Agreement shall be resolved through <strong>binding arbitration</strong>, seated in <strong>Zurich, Switzerland</strong>, in accordance with internationally recognized arbitration rules.</p>
-
-      <hr>
-
-      <h2>9. Entire Agreement</h2>
-      <p>This Agreement constitutes the entire understanding between the parties and supersedes all prior discussions, representations, or agreements. Any amendment must be in writing and signed by both parties.</p>
-
-      <hr>
-
-      <h2>10. Severability</h2>
-      <p>If any provision of this Agreement is held invalid or unenforceable, the remaining provisions shall remain in full force and effect.</p>
-
-      <hr>
-
-      <h2>Signatures</h2>
-      <p class="muted" style="font-style:italic; margin-bottom:2rem;">IN WITNESS WHEREOF, the parties have executed this Agreement as of the Effective Date first written above.</p>
-
-      <div class="sig-grid">
-        <div class="sig-box">
-          <div class="sig-label">Company</div>
-          <div class="sig-name">Investing International SA</div>
-          <input type="text" class="sig-input disabled" id="companySignature" value="Thomas Webber" readonly>
-          <div class="sig-text">Signature</div>
-          <div class="sig-details">
-            <p><span>Name:</span> Thomas Webber</p>
-            <p><span>Title:</span> Senior Financial Advisor</p>
-            <p><span>Date:</span> <input type="text" class="date-input disabled" value="2026-01-22" readonly></p>
-          </div>
-        </div>
-
-        <div class="sig-box">
-          <div class="sig-label">Investor</div>
-          <div class="sig-name" id="investorNameDisplay">Investor Name</div>
-          <input type="text" class="sig-input" id="investorSignature" placeholder="Your signature">
-          <div class="sig-text">Signature</div>
-          <div class="sig-details">
-            <p><span>Name:</span> <span id="investorNameSig">Investor Name</span></p>
-            <p><span>Date:</span> <input type="date" class="date-input" id="investorDate"></p>
-          </div>
-        </div>
-      </div>
-
-      <button class="submit-btn" id="submitBtn" onclick="submitContract()">Submit Signed Contract</button>
-
-      <div class="success-message" id="successMessage">
-        <div class="success-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-          </svg>
-        </div>
-        <h3>Contract Successfully Signed!</h3>
-        <p>The contract is signed from both sides and is now legally binding.</p>
-        <p style="margin-top:1rem; font-size:0.875rem;">Signed by: <strong>Thomas Webber</strong> (Company) & <strong id="signedInvestorName">Investor</strong></p>
-      </div>
-
-      <div class="footer">
-        <p>This document is confidential and intended solely for the parties named herein.</p>
-        <p class="ref">Document Reference: INV-AGR-2026-001</p>
-      </div>
-    </article>
-  </main>
-
-  <script>
-    function updateInvestorName() {
-      const name = document.getElementById('investorName').value || 'Investor Name';
-      document.getElementById('investorNameDisplay').textContent = name;
-      document.getElementById('investorNameSig').textContent = name;
-    }
-
-    function submitContract() {
-      const investorName = document.getElementById('investorName').value;
-      const investorSignature = document.getElementById('investorSignature').value;
-      const investorDate = document.getElementById('investorDate').value;
-
-      if (!investorName || !investorSignature || !investorDate) {
-        alert('Please fill in all required fields:\n- Investor Name\n- Your Signature\n- Date');
-        return;
-      }
-
-      document.getElementById('signedInvestorName').textContent = investorName;
-      document.getElementById('successMessage').classList.add('show');
-      document.getElementById('submitBtn').disabled = true;
-      document.getElementById('submitBtn').textContent = 'Contract Submitted';
-      
-      document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-  </script>
+    <div class="moving-text">Thomas Webber</div>
 </body>
 </html>
